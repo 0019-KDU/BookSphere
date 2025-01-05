@@ -1,0 +1,39 @@
+spring:
+  # DataSource Configuration
+  datasource:
+    url: jdbc:postgresql://localhost:5432/book_social_network
+    username: postgres
+    password: 12345q
+    driver-class-name: org.postgresql.Driver
+
+  # JPA & Hibernate Configuration
+  jpa:
+    # Hibernate DDL Mode (update will auto-update the schema)
+    hibernate:
+      ddl-auto: update
+    show-sql: false  # Set to true if you want SQL logs in the console
+    properties:
+      hibernate:
+        format_sql: true  # Format SQL for better readability
+    database: postgresql  # Set database type
+    database-platform: org.hibernate.dialect.PostgreSQLDialect  # Correct dialect for PostgreSQL
+
+  # Mail Configuration (for sending emails)
+  mail:
+    host: localhost  # Mail server host (e.g., MailHog for local dev)
+    port: 1025  # SMTP port (1025 for MailHog)
+    username: chira  # SMTP username (if authentication is required)
+    password: chira  # SMTP password (if authentication is required)
+    properties:
+      mail:
+        smtp:
+          trust: "*"  # Trust all SMTP servers (useful for local testing)
+      auth: true  # Enable authentication for the mail server
+      starttls:
+        enable: true  # Enable STARTTLS to secure the connection
+    # Timeout configurations
+    connectiontimeout: 5000  # Connection timeout (in milliseconds)
+    timeout: 3000  # General timeout (in milliseconds)
+    writetimeout: 5000  # Write timeout (in milliseconds)
+
+
