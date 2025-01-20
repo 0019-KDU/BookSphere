@@ -1,5 +1,6 @@
 package com.chiradev.book.handler;
 
+import com.chiradev.book.exception.OperationNotPermittedException;
 import jakarta.mail.MessagingException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -88,6 +89,16 @@ public class GlobalExceptionHandler {
                 .body(
                         ExceptionResponse.builder()
                                 .businessErrorDescription("Internal Server Error, Please Contact the Administrator")
+                                .error(exp.getMessage())
+                                .build()
+                );
+    }
+    @ExceptionHandler(OperationNotPermittedException.class)
+    public ResponseEntity<ExceptionResponse>handleException(OperationNotPermittedException exp){
+        return ResponseEntity
+                .status(BAD_REQUEST)
+                .body(
+                        ExceptionResponse.builder()
                                 .error(exp.getMessage())
                                 .build()
                 );
