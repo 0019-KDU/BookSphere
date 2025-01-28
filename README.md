@@ -15,3 +15,33 @@
 ### Class diagram
 
 ![Alt text](docs/Book-network.png)
+
+###  JWT-based authentication flow
+
+![Alt text](docs/security.png)
+
+## 1. User Request
+- The client sends a request (GET, POST, PATCH, DELETE) to the server.
+
+## 2. Filter Chain Execution
+- The request passes through multiple filters.
+- The `JwtAuthenticationFilter` (a `OncePerRequestFilter`) intercepts the request.
+
+## 3. Token Validation
+- The filter checks if a JWT token exists.
+- If a token is found, it is validated by the `JwtService`.
+
+## 4. User Authentication
+- If the token is valid, `UserDetailsService` fetches the user based on the email.
+- If the user is found, authentication details (principal, credentials, authorities) are stored in `SecurityContextHolder`.
+
+## 5. Request Processing
+- The authenticated request proceeds to the `DispatcherServlet`, which forwards it to the appropriate controller.
+
+## 6. Error Handling
+- If the token is invalid, a `TokenInvalidException` is thrown.
+- If the user is not found, a `UserNotFoundException` is thrown.
+- If authentication fails, the response is sent back with an error.
+
+## 7. Successful Response
+- If authentication is successful, the request is processed by a controller, and a response is returned to the client.
