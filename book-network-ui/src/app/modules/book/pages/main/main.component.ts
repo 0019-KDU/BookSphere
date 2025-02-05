@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
+import { MenuComponent } from '../../components/menu/menu.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-main',
-  standalone: false,
-  
   templateUrl: './main.component.html',
-  styleUrl: './main.component.scss'
+  styleUrls: ['./main.component.scss'],
+  imports: [MenuComponent, RouterModule],
 })
-export class MainComponent {
-
-}
+export class MainComponent {}

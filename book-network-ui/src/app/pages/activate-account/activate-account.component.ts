@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../services/services/authentication.service';
-import { skipUntil } from 'rxjs';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { CodeInputModule } from 'angular-code-input';
 
 @Component({
-  standalone: false,
-
   selector: 'app-activate-account',
+  imports: [FormsModule, CommonModule, CodeInputModule],
   templateUrl: './activate-account.component.html',
-  styleUrls: ['./activate-account.component.scss'],
+  styleUrl: './activate-account.component.scss',
 })
 export class ActivateAccountComponent {
   message = '';
@@ -45,6 +46,4 @@ export class ActivateAccountComponent {
   onCodeCompleted(token: string) {
     this.confirmAccount(token);
   }
-
-  protected readonly skipUntil = skipUntil;
 }

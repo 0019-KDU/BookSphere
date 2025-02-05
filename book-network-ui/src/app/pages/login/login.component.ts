@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
-import { AuthenticationRequest } from '../../services/models';
-import { Router } from '@angular/router';
-import { AuthenticationService } from '../../services/services';
+import { AuthenticationRequest } from '../../services/models/authentication-request';
+import { Route, Router } from '@angular/router';
+import { AuthenticationService } from '../../services/services/authentication.service';
+import { FormsModule } from '@angular/forms';
 import { TokenService } from '../../services/token/token.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  standalone: false,
-
+  imports: [FormsModule, CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -16,14 +17,10 @@ export class LoginComponent {
   errorMsg: Array<string> = [];
 
   constructor(
-    private authService: AuthenticationService,
     private router: Router,
+    private authService: AuthenticationService,
     private tokenService: TokenService
   ) {}
-
-  register() {
-    this.router.navigate(['register']);
-  }
   login() {
     this.errorMsg = [];
     this.authService
@@ -44,5 +41,9 @@ export class LoginComponent {
           }
         },
       });
+  }
+
+  register() {
+    this.router.navigate(['register']);
   }
 }

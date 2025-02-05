@@ -60,7 +60,6 @@ public class Book extends BaseEntity {
                .mapToDouble(Feedback::getNote)
                .average()
                .orElse(0.0);
-       double roundRate=Math.round(rate*10.0)/10.0;
-       return roundRate;
+        return Math.round(rate*10.0)/10.0;
     }
 }

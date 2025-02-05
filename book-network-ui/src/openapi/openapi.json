@@ -456,6 +456,24 @@
         }
       }
     },
+    "/books/test": {
+      "get": {
+        "tags": ["Book"],
+        "operationId": "testEndpoint",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/books/returned": {
       "get": {
         "tags": ["Book"],

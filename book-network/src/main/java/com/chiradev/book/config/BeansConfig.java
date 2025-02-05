@@ -39,7 +39,7 @@ public class BeansConfig {
     }
 
     @Bean
-    public AuditorAware<Integer> auditorAware(){
+    public AuditorAware<String> auditorAware(){
         return new ApplicationAuditAware();
     }
 
@@ -59,11 +59,12 @@ public class BeansConfig {
         final CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
         config.setAllowedOrigins(Collections.singletonList("http://localhost:4200"));
+        config.addExposedHeader("Authorization");
         config.setAllowedHeaders(Arrays.asList(
-                ORIGIN,
-                CONTENT_TYPE,
-                ACCEPT,
-                AUTHORIZATION
+                HttpHeaders.ORIGIN,
+                HttpHeaders.CONTENT_TYPE,
+                HttpHeaders.ACCEPT,
+                HttpHeaders.AUTHORIZATION
         ));
         config.setAllowedMethods(Arrays.asList(
                 "GET",
@@ -76,4 +77,5 @@ public class BeansConfig {
         return new CorsFilter(source);
 
     }
+
 }

@@ -32,6 +32,8 @@ import { returnBorrowBook } from '../fn/book/return-borrow-book';
 import { ReturnBorrowBook$Params } from '../fn/book/return-borrow-book';
 import { saveBook } from '../fn/book/save-book';
 import { SaveBook$Params } from '../fn/book/save-book';
+import { testEndpoint } from '../fn/book/test-endpoint';
+import { TestEndpoint$Params } from '../fn/book/test-endpoint';
 import { updateArchivedStatus } from '../fn/book/update-archived-status';
 import { UpdateArchivedStatus$Params } from '../fn/book/update-archived-status';
 import { updateShareableStatus } from '../fn/book/update-shareable-status';
@@ -271,6 +273,31 @@ export class BookService extends BaseService {
   findBookById(params: FindBookById$Params, context?: HttpContext): Observable<BookResponse> {
     return this.findBookById$Response(params, context).pipe(
       map((r: StrictHttpResponse<BookResponse>): BookResponse => r.body)
+    );
+  }
+
+  /** Path part for operation `testEndpoint()` */
+  static readonly TestEndpointPath = '/books/test';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `testEndpoint()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  testEndpoint$Response(params?: TestEndpoint$Params, context?: HttpContext): Observable<StrictHttpResponse<string>> {
+    return testEndpoint(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `testEndpoint$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  testEndpoint(params?: TestEndpoint$Params, context?: HttpContext): Observable<string> {
+    return this.testEndpoint$Response(params, context).pipe(
+      map((r: StrictHttpResponse<string>): string => r.body)
     );
   }
 

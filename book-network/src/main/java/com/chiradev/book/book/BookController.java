@@ -18,11 +18,19 @@ public class BookController {
 
     private final BookService service;
 
-    @PostMapping
-    public ResponseEntity<Integer> saveBook(@Valid @RequestBody BookRequest request, Authentication connectedUser) {
-        return ResponseEntity.ok(service.save(request,connectedUser));
+
+    @GetMapping("/test")
+    public ResponseEntity<String> testEndpoint() {
+        System.out.println("📌 Test GET endpoint was called!");
+        return ResponseEntity.ok("✅ GET request is working!");
     }
 
+    @PostMapping
+    public ResponseEntity<Integer> saveBook(@Valid @RequestBody BookRequest request, Authentication connectedUser) {
+        System.out.println("📌 Received POST request for book: " + request);
+        System.out.println("📌 Authenticated User: " + (connectedUser != null ? connectedUser.getName() : "NULL"));
+        return ResponseEntity.ok(service.save(request, connectedUser));
+    }
     @GetMapping("{book-id}")
     public ResponseEntity<BookResponse> findBookById(
             @PathVariable("book-id") Integer bookId

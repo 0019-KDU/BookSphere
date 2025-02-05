@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-menu',
-  standalone: false,
-
+  imports: [],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.scss',
 })
 export class MenuComponent implements OnInit {
+  logout() {
+    throw new Error('Method not implemented.');
+  }
   ngOnInit(): void {
     const linkColor = document.querySelectorAll('.nav-link');
     linkColor.forEach((link) => {
@@ -19,8 +21,5 @@ export class MenuComponent implements OnInit {
         link.classList.add('active');
       });
     });
-  }
-  logout() {
-    throw new Error('Method not implemented.');
   }
 }

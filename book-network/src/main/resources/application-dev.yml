@@ -40,7 +40,7 @@ application:
   security:
     jwt:
       secret-key: asdy5fjh3490Kdhd234hd7576ftyt76rftf7tfytht756
-      expiration: 864000
+      expiration: 86400000
   mailing:
     frontend:
       activation-url: http://localhost:4200/activate-account
@@ -50,3 +50,5 @@ application:
 
 server:
   port: 8088
+  servlet:
+    context-path: /api/v1
