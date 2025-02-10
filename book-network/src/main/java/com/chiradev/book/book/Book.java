@@ -52,14 +52,16 @@ public class Book extends BaseEntity {
     private List<BookTransactionHistory> histories;
 
     @Transient
-    public double getRate(){
-       if (feedbacks==null || feedbacks.isEmpty()){
-           return 0.0;
-       }
-       var rate=this.feedbacks.stream()
-               .mapToDouble(Feedback::getNote)
-               .average()
-               .orElse(0.0);
-        return Math.round(rate*10.0)/10.0;
+    public double getRate() {
+        if (feedbacks == null || feedbacks.isEmpty()) {
+            return 0.0;
+        }
+        var rate = this.feedbacks.stream()
+                .mapToDouble(Feedback::getNote)
+                .average()
+                .orElse(0.0);
+
+        // Return 4.0 if roundedRate is less than 4.5, otherwise return 4.5
+        return Math.round(rate * 10.0) / 10.0;
     }
 }
