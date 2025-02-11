@@ -4,10 +4,11 @@ import { Router } from '@angular/router';
 import { PageResponseBookResponse } from 'src/app/services/models/page-response-book-response';
 import { BookService } from 'src/app/services/services/book.service';
 import { BookCardComponent } from '../../components/book-card/book-card.component';
+import { BookResponse } from 'src/app/services/models/book-response';
 
 @Component({
   selector: 'app-my-books',
-  imports: [CommonModule, BookCardComponent],
+  standalone: false,
   templateUrl: './my-books.component.html',
   styleUrl: './my-books.component.scss',
 })
@@ -66,5 +67,32 @@ export class MyBooksComponent implements OnInit {
 
   get isLastPage() {
     return this.page === (this.bookResponse.totalPages as number) - 1;
+  }
+  archiveBook(book: BookResponse) {
+    this.bookService
+      .updateArchivedStatus({
+        'book-id': book.id as number,
+      })
+      .subscribe({
+        next: () => {
+          book.archived = !book.archived;
+        },
+      });
+  }
+
+  shareBook(book: BookResponse) {
+    this.bookService
+      .updateShareableStatus({
+        'book-id': book.id as number,
+      })
+      .subscribe({
+        next: () => {
+          book.shareable = !book.shareable;
+        },
+      });
+  }
+
+  editBook(book: BookResponse) {
+    this.router.navigate(['books', 'manage', book.id]);
   }
 }

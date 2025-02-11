@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-rating',
-  imports: [FormsModule, CommonModule],
+  standalone: false,
   templateUrl: './rating.component.html',
   styleUrl: './rating.component.scss',
 })

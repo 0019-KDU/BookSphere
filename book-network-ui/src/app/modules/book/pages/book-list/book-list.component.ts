@@ -8,8 +8,7 @@ import { BookResponse } from 'src/app/services/models/book-response';
 
 @Component({
   selector: 'app-book-list',
-  standalone: true, // If using standalone components
-  imports: [CommonModule, BookCardComponent],
+  standalone: false, // If using standalone components
   templateUrl: './book-list.component.html',
   styleUrls: ['./book-list.component.scss'], // ✅ Fixed typo
 })
