@@ -1,7 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { BookResponse } from '../../../../services/models';
-import { CommonModule } from '@angular/common';
-import { RatingComponent } from '../rating/rating.component';
+import { BookResponse } from 'src/app/services/models/book-response';
 
 @Component({
   selector: 'app-book-card',
@@ -11,16 +9,16 @@ import { RatingComponent } from '../rating/rating.component';
 })
 export class BookCardComponent {
   private _book: BookResponse = {};
-  private _bookCover: String | undefined;
   private _manage = false;
-  get manage(): boolean {
-    return this._manage;
+  private _bookCover: string | undefined;
+
+  get bookCover(): string | undefined {
+    if (this._book.cover) {
+      return 'data:image/jpg;base64,' + this._book.cover;
+    }
+    return 'https://source.unsplash.com/user/c_v_r/1900x800';
   }
 
-  @Input()
-  set manage(value: boolean) {
-    this._manage = value;
-  }
   get book(): BookResponse {
     return this._book;
   }
@@ -30,11 +28,13 @@ export class BookCardComponent {
     this._book = value;
   }
 
-  get bookCover(): String | undefined {
-    if (this._book.cover) {
-      return 'data:image/jpeg;base64,' + this._book.cover;
-    }
-    return 'https://source.unsplash.com/user/c_v_r/1900x800';
+  get manage(): boolean {
+    return this._manage;
+  }
+
+  @Input()
+  set manage(value: boolean) {
+    this._manage = value;
   }
 
   @Output() private share: EventEmitter<BookResponse> =
@@ -49,6 +49,7 @@ export class BookCardComponent {
     new EventEmitter<BookResponse>();
   @Output() private details: EventEmitter<BookResponse> =
     new EventEmitter<BookResponse>();
+
   onShare() {
     this.share.emit(this._book);
   }
