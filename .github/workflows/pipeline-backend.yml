@@ -80,6 +80,10 @@ jobs:
         with:
           java-version: '17'
           distribution: 'corretto'
+
+      - name: Grant execute permission to mvnw
+        run: chmod +x book-network/mvnw
+
       - name: Extract project version
         id: extract_version
         run: |
