@@ -20,7 +20,7 @@ spring:
 
   # Mail Configuration (for sending emails)
   mail:
-    host: ${EMAIL_HOSTNAME}  # Mail server host (e.g., MailHog for local dev)
+    host: ${EMAIL_HOST_NAME}  # Mail server host (e.g., MailHog for local dev)
     port: 465  # SMTP port (1025 for MailHog)
     username: ${EMAIL_USER_NAME}  # SMTP username (if authentication is required)
     password: ${EMAIL_PASSWORD}  # SMTP password (if authentication is required)
