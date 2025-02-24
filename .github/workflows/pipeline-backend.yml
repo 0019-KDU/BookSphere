@@ -65,6 +65,9 @@ jobs:
           java-version: '17'
           distribution: 'corretto'
 
+      - name: Grant execute permission to mvnw
+        run: chmod +x book-network/mvnw
+
       - name: Compile project
         run: |
           cd book-network
@@ -80,9 +83,6 @@ jobs:
         with:
           java-version: '17'
           distribution: 'corretto'
-
-      - name: Grant execute permission to mvnw
-        run: chmod +x book-network/mvnw
 
       - name: Extract project version
         id: extract_version
@@ -128,6 +128,8 @@ jobs:
           export EMAIL_USER_NAME=${{ secrets.EMAIL_USER_NAME }}
           export EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }}
           cd ci-cd
+          chmod +x run.sh
+          ./run.sh
           docker compose -f docker-compose.yml pull -q
           docker compose -f docker-compose.yml up -d
           EOF
