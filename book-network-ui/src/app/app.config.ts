@@ -12,6 +12,6 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideHttpClient(withInterceptors([httpTokenInterceptor])),
-    ...(ApiModule.forRoot({ rootUrl: 'http://192.168.0.227:8088/api/v1' }).providers || [])
+    ...(ApiModule.forRoot({ rootUrl: 'http://52.221.204.241:8088/api/v1' }).providers || [])
   ],
 };
