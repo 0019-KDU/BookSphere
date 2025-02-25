@@ -26,6 +26,9 @@ jobs:
           java-version: '17'
           distribution: 'corretto'
 
+      - name: Grant execute permissions to mvnw
+        run: chmod +x book-network/mvnw
+
       - name: Running Unit Tests
         run: |
           cd book-network
@@ -44,6 +47,9 @@ jobs:
         with:
           java-version: '17'
           distribution: 'corretto'
+
+      - name: Grant execute permissions to mvnw
+        run: chmod +x book-network/mvnw
 
       - name: Running Unit Tests
         run: |
@@ -64,6 +70,10 @@ jobs:
         with:
           java-version: '17'
           distribution: 'corretto'
+
+      - name: Grant execute permissions to mvnw
+        run: chmod +x book-network/mvnw
+
 
       - name: Compile project
         run: |
