@@ -11,29 +11,29 @@ spring:
     # Hibernate DDL Mode (update will auto-update the schema)
     hibernate:
       ddl-auto: update
-    show-sql: false  # Set to true if you want SQL logs in the console
+    show-sql: false # Set to true if you want SQL logs in the console
     properties:
       hibernate:
-        format_sql: true  # Format SQL for better readability
-    database: postgresql  # Set database type
-    database-platform: org.hibernate.dialect.PostgreSQLDialect  # Correct dialect for PostgreSQL
+        format_sql: true # Format SQL for better readability
+    database: postgresql # Set database type
+    database-platform: org.hibernate.dialect.PostgreSQLDialect # Correct dialect for PostgreSQL
 
   # Mail Configuration (for sending emails)
   mail:
-  # Mail server host (e.g., MailHog for local dev)
-    host: localhost  # Mail server host (e.g., MailHog for local dev)
-    port: 465  # SMTP port (1025 for MailHog)
-    username: chiradev  # SMTP username (if authentication is required)
-    password: chiradev  # SMTP password (if authentication is required)
+    # Mail server host (e.g., MailHog for local dev)
+    host: smtp.gmail.com # Mail server host (e.g., MailHog for local dev)
+    port: 465 # SMTP port (1025 for MailHog)
+    username: charukadilan2017@gmail.com # SMTP username (if authentication is required)
+    password: ohzg zvyc uium csjo # SMTP password (if authentication is required)
     properties:
       mail:
         smtp:
-          auth: true  # Trust all SMTP servers (useful for local testing)
+          auth: true # Trust all SMTP servers (useful for local testing)
           ssl:
             enable: true
-            trust: "*"  # Enable authentication for the mail server
+            trust: "*" # Enable authentication for the mail server
       starttls:
-        enable: true  # Enable STARTTLS to secure the connection
+        enable: true # Enable STARTTLS to secure the connection
     protocol: smtp
 application:
   security:
