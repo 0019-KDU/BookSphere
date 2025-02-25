@@ -150,6 +150,10 @@ jobs:
           export EMAIL_HOST_NAME=${{ secrets.EMAIL_HOST_NAME }}
           export EMAIL_USER_NAME=${{ secrets.EMAIL_USER_NAME }}
           export EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }}
+          
+          echo "EMAIL_HOST_NAME is set to: $EMAIL_HOST_NAME"
+          echo "EMAIL_USER_NAME is set to: $EMAIL_USER_NAME"
+          echo "EMAIL_PASSWORD is set (length: ${#EMAIL_PASSWORD})"
           cd ~/ci-cd
           docker-compose -f docker-compose.yml pull -q  # Ensure compatibility with V1
           docker-compose -f docker-compose.yml up -d --remove-orphans
