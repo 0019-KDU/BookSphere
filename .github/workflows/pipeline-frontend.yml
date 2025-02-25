@@ -46,10 +46,10 @@ jobs:
     steps:
       - name: Set up SSH
         run: |
-            mkdir -p ~/.ssh
-            echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-            chmod 600 ~/.ssh/id_rsa
-            ssh-keyscan ${{ secrets.VPS_IP }} >> ~/.ssh/known_hosts
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan ${{ secrets.VPS_IP }} >> ~/.ssh/known_hosts
 
       - name: Create deployment folder
         run: ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} "mkdir -p ci-cd"
@@ -61,9 +61,18 @@ jobs:
         run: |
           ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} <<EOF
           cd ci-cd
+          # Set environment variables
           export EMAIL_HOST_NAME=${{ secrets.EMAIL_HOST_NAME }}
           export EMAIL_USER_NAME=${{ secrets.EMAIL_USER_NAME }}
           export EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }}
+          
+          # Echo environment variables (avoid printing sensitive data like password)
+          echo "EMAIL_HOST_NAME is set to: \$EMAIL_HOST_NAME"
+          echo "EMAIL_USER_NAME is set to: \$EMAIL_USER_NAME"
+          echo "EMAIL_PASSWORD is set (length: \${#EMAIL_PASSWORD})"
+          
+          # Pull and run Docker containers
           docker compose -f docker-compose.yml pull -q
           docker-compose -f docker-compose.yml up -d --remove-orphans
           EOF
+ 
