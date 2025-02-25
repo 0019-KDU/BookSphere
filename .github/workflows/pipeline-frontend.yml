@@ -61,6 +61,9 @@ jobs:
         run: |
           ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} <<EOF
           cd ci-cd
+          export EMAIL_HOST_NAME=${{ secrets.EMAIL_HOST_NAME }}
+          export EMAIL_USER_NAME=${{ secrets.EMAIL_USER_NAME }}
+          export EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }}
           docker compose -f docker-compose.yml pull -q
           docker-compose -f docker-compose.yml up -d --remove-orphans
           EOF
