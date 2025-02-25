@@ -50,7 +50,7 @@ jobs:
             echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
             chmod 600 ~/.ssh/id_rsa
             ssh-keyscan ${{ secrets.VPS_IP }} >> ~/.ssh/known_hosts
-          
+
       - name: Create deployment folder
         run: ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} "mkdir -p ci-cd"
 
@@ -62,5 +62,5 @@ jobs:
           ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} <<EOF
           cd ci-cd
           docker compose -f docker-compose.yml pull -q
-          docker compose -f docker-compose.yml up -d
+          docker-compose -f docker-compose.yml up -d --remove-orphans
           EOF
