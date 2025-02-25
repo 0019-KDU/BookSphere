@@ -20,14 +20,11 @@ spring:
 
   # Mail Configuration (for sending emails)
   mail:
-<<<<<<< HEAD
-    host: ${EMAIL_HOST_NAME}  # Mail server host (e.g., MailHog for local dev)
-=======
-    host: smtp.gmail.com  # Mail server host (e.g., MailHog for local dev)
->>>>>>> parent of 56c80f8 (Merge pull request #1 from 0019-KDU/CI/CD-Pipeline-&-Deployment-)
+  # Mail server host (e.g., MailHog for local dev)
+    host: localhost  # Mail server host (e.g., MailHog for local dev)
     port: 465  # SMTP port (1025 for MailHog)
-    username: charukadilan2017@gmail.com  # SMTP username (if authentication is required)
-    password: ohzg zvyc uium csjo  # SMTP password (if authentication is required)
+    username: chiradev  # SMTP username (if authentication is required)
+    password: chiradev  # SMTP password (if authentication is required)
     properties:
       mail:
         smtp:
