@@ -20,20 +20,19 @@ spring:
 
   # Mail Configuration (for sending emails)
   mail:
-    # Mail server host (e.g., MailHog for local dev)
-    host: ${EMAIL_HOST_NAME} # Mail server host (e.g., MailHog for local dev)
-    port: 465 # SMTP port (1025 for MailHog)
-    username: ${EMAIL_USER_NAME} # SMTP username (if authentication is required)
-    password:  ${EMAIL_PASSWORD} # SMTP password (if authentication is required)
+    host: ${EMAIL_HOST_NAME}
+    port: 465
+    username: ${EMAIL_USER_NAME}
+    password: ${EMAIL_PASSWORD}
     properties:
       mail:
         smtp:
-          auth: true # Trust all SMTP servers (useful for local testing)
+          auth: true
           ssl:
             enable: true
-            trust: "*" # Enable authentication for the mail server
-      starttls:
-        enable: true # Enable STARTTLS to secure the connection
+            trust: "*"
+          starttls:
+            enable: true
     protocol: smtp
 application:
   security:
