@@ -21,10 +21,10 @@ spring:
   # Mail Configuration (for sending emails)
   mail:
     # Mail server host (e.g., MailHog for local dev)
-    host: smtp.gmail.com # Mail server host (e.g., MailHog for local dev)
+    host: ${EMAIL_HOST_NAME} # Mail server host (e.g., MailHog for local dev)
     port: 465 # SMTP port (1025 for MailHog)
-    username: charukadilan2017@gmail.com # SMTP username (if authentication is required)
-    password: ohzg zvyc uium csjo # SMTP password (if authentication is required)
+    username: ${EMAIL_USER_NAME} # SMTP username (if authentication is required)
+    password:  ${EMAIL_PASSWORD} # SMTP password (if authentication is required)
     properties:
       mail:
         smtp:
@@ -43,6 +43,8 @@ application:
   mailing:
     frontend:
       activation-url: http://localhost:4200/activate-account
+  cors:
+    origins: http://52.221.204.241:8088/,http://localhost:8088/,http://localhost:4200,http://52.221.204.241:8080
   file:
     upload:
       photos-output-path: ./uploads
