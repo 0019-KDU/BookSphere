@@ -50,3 +50,5 @@ networks:
 volumes:
   postgres:
     driver: local
+  bsn-api-storage:
+    driver: local
