@@ -22,7 +22,7 @@ services:
       - 1025:1025
   bsn-api:
     container_name: bsn-api
-    image: "${DOCKER_USERNAME}/bsn-api:latest"
+    image: bsn-api:latest
     environment:
       EMAIL_HOST_NAME: ${EMAIL_HOST_NAME}
       EMAIL_USER_NAME: ${EMAIL_USER_NAME}
@@ -36,7 +36,7 @@ services:
 
   bsn-ui:
     container_name: bsn-ui
-    image: "${DOCKER_USERNAME}/bsn-ui:latest"
+    image: bsn-ui:latest
     ports:
       - 8080:80
     networks:
