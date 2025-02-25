@@ -44,7 +44,13 @@ jobs:
     runs-on: self-hosted
     needs: [ build-image ]
     steps:
-
+      - name: Set up SSH
+        run: |
+            mkdir -p ~/.ssh
+            echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+            chmod 600 ~/.ssh/id_rsa
+            ssh-keyscan ${{ secrets.VPS_IP }} >> ~/.ssh/known_hosts
+          
       - name: Create deployment folder
         run: ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} "mkdir -p ci-cd"
 
